@@ -1,1 +1,361 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KARIM SAAB | عبد الكريم بن ابراهيم الصعب</title>
+  <meta name="description" content="البوابة الرسمية لعبد الكريم بن ابراهيم الصعب — استثمارات عقارية، تطوير عمراني، وإرث ممتد منذ 1975.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-hover: #b8972e;
+      --navy: #030b26;
+      --navy-light: #07153b;
+      --white: #ffffff;
+      --cream: #faf8f5;
+      --text-dark: #141414;
+      --text-gray: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Serif Arabic', 'Cinzel', serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    header {
+      position: absolute;
+      top: 0; left: 0; width: 100%;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    .brand-logo {
+      color: var(--gold);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-decoration: none;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      color: var(--white);
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .lang-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      background: linear-gradient(rgba(3, 11, 38, 0.5), rgba(3, 11, 38, 0.8)), 
+                  url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      padding: 0 20px;
+    }
+    .hero-subtitle {
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.3;
+      max-width: 850px;
+      margin-bottom: 25px;
+    }
+    .hero-btn {
+      display: inline-block;
+      padding: 14px 34px;
+      background-color: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      transition: background 0.3s;
+    }
+    .hero-btn:hover { background-color: var(--gold-hover); }
+
+    .stats-strip {
+      background-color: var(--white);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 40px 20px;
+      border-bottom: 1px solid #eaeaea;
+      text-align: center;
+    }
+    .stat-box { padding: 15px 25px; }
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-gray);
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    .showcase {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .section-header p {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .project-card {
+      background: var(--white);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover { transform: translateY(-6px); }
+    .card-img {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-info { padding: 25px; }
+    .card-tag { font-size: 0.7rem; color: var(--gold); letter-spacing: 2px; }
+    .card-title { font-size: 1.25rem; color: var(--navy); margin: 8px 0; }
+    .card-desc { font-size: 0.85rem; color: var(--text-gray); line-height: 1.6; }
+
+    .brand-portfolio-section {
+      background-color: var(--navy);
+      padding: 70px 20px;
+      text-align: center;
+      color: var(--white);
+    }
+    .portfolio-title { font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 5px; font-weight: 400; }
+    .portfolio-subtitle { font-size: 0.75rem; letter-spacing: 3px; color: #8f9bb3; margin-bottom: 45px; }
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .logo-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .logo-item { display: flex; flex-direction: column; align-items: center; padding: 10px; }
+    .logo-main { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--white); margin-bottom: 4px; }
+    .logo-sub { font-size: 0.65rem; letter-spacing: 1.5px; color: #cbd5e1; }
+
+    .accor-style-footer {
+      background-color: var(--cream);
+      padding-top: 55px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 700px; margin: 0 auto; padding: 0 20px 45px 20px; }
+    .brand-monogram { font-size: 2.8rem; font-weight: 700; color: var(--gold); letter-spacing: 4px; line-height: 1; margin-bottom: 8px; }
+    .brand-name { font-size: 1.25rem; letter-spacing: 5px; margin: 0; color: #c59b27; font-weight: 600; }
+    .brand-tagline { display: block; font-size: 0.85rem; color: #555555; margin-top: 6px; }
+    .section-heading { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--navy); margin-top: 35px; margin-bottom: 25px; font-weight: 700; }
+    .social-links-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 24px; max-width: 480px; margin: 0 auto; }
+    .social-item { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .social-item:hover { color: var(--gold); }
+    .social-icon { width: 17px; height: 17px; }
+    .mt-40 { margin-top: 45px; }
+    .other-websites-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+    .web-link { text-decoration: none; color: var(--navy); font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; }
+    .footer-bottom-bar { background-color: var(--navy); padding: 18px 20px; color: var(--white); font-size: 0.75rem; }
+    .bottom-inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    @media (min-width: 600px) {
+      .bottom-inner { flex-direction: row; justify-content: space-between; }
+    }
+    .legal-links { display: flex; gap: 15px; }
+    .legal-links a { color: #cbd5e1; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="brand-logo">KARIM SAAB</a>
+    <div class="nav-actions">
+      <button id="langToggleBtn" class="lang-btn" onclick="toggleLanguage()">English</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="hero-subtitle" data-ar="SINCE 1975 | إرث مستمر" data-en="SINCE 1975 | CONTINUOUS LEGACY">SINCE 1975 | إرث مستمر</span>
+    <h1 class="hero-title" data-ar="نصنع مجتمعات استثنائية ونبني للمستقبل" data-en="Crafting Exceptional Communities & Building for the Future">نصنع مجتمعات استثنائية ونبني للمستقبل</h1>
+    <a href="#portfolio" class="hero-btn" data-ar="استكشف المشاريع" data-en="Explore Portfolio">استكشف المشاريع</a>
+  </section>
+
+  <div class="stats-strip">
+    <div class="stat-box">
+      <span class="stat-number">1975</span>
+      <span class="stat-label" data-ar="سنة الانطلاق والتأسيس" data-en="Year Founded">سنة الانطلاق والتأسيس</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">+50</span>
+      <span class="stat-label" data-ar="عاماً من الخبرة العقارية" data-en="Years of Real Estate Expertise">عاماً من الخبرة العقارية</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">5+</span>
+      <span class="stat-label" data-ar="دول شملتها الاستثمارات" data-en="Countries of Investment">دول شملتها الاستثمارات</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">100%</span>
+      <span class="stat-label" data-ar="التزام بالجودة والأصالة" data-en="Commitment to Quality">التزام بالجودة والأصالة</span>
+    </div>
+  </div>
+
+  <section class="showcase" id="portfolio">
+    <div class="section-header">
+      <h2 data-ar="أبرز المعالم والمشاريع" data-en="Signature Developments">أبرز المعالم والمشاريع</h2>
+      <p>SIGNATURE DEVELOPMENTS</p>
+    </div>
+    <div class="cards-grid">
+      <div class="project-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="card-info">
+          <span class="card-tag">HOSPITALITY & RETREAT</span>
+          <h3 class="card-title" data-ar="فيلا الصعب — سقارة" data-en="Villa Alsaab — Saqqara">فيلا الصعب — سقارة</h3>
+          <p class="card-desc" data-ar="واحة ضيافة واستجمام راقية تجمع بين الهدوء الريفي والتصميم الفخم بجوار أهرامات الجيزة." data-en="A luxury sanctuary of hospitality blending countryside tranquility with refined architecture beside the Giza Pyramids.">واحة ضيافة واستجمام راقية تجمع بين الهدوء الريفي والتصميم الفخم بجوار أهرامات الجيزة.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="card-info">
+          <span class="card-tag">RESIDENTIAL & URBAN</span>
+          <h3 class="card-title" data-ar="آفاق الإعمار — مشاريع التطوير" data-en="Afaq Al-Emar — Urban Developments">آفاق الإعمار — مشاريع التطوير</h3>
+          <p class="card-desc" data-ar="مجمعات سكنية وعمرانية عصرية ترتقي بجودة الحياة وتتبنى أحدث الحلول الإنشائية." data-en="Modern residential and urban complexes elevating lifestyle standards through state-of-the-art engineering solutions.">مجمعات سكنية وعمرانية عصرية ترتقي بجودة الحياة وتتبنى أحدث الحلول الإنشائية.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="brand-portfolio-section">
+    <div class="portfolio-container">
+      <h3 class="portfolio-title" data-ar="مجموعة مشاريعنا واستثماراتنا" data-en="Our Group Portfolio & Investments">مجموعة مشاريعنا واستثماراتنا</h3>
+      <p class="portfolio-subtitle">PORTFOLIO & SUBSIDIARIES</p>
+      <div class="logo-grid">
+        <div class="logo-item"><span class="logo-main">ALSAAB</span><span class="logo-sub">REAL ESTATE INVESTMENTS</span></div>
+        <div class="logo-item"><span class="logo-main">AFAQ AL-EMAR</span><span class="logo-sub">DEVELOPMENT & CONSTRUCTION</span></div>
+        <div class="logo-item"><span class="logo-main">ALSAAB</span><span class="logo-sub">RESIDENCES</span></div>
+        <div class="logo-item"><span class="logo-main">VILLA ALSAAB</span><span class="logo-sub">SAQQARA RETREAT</span></div>
+        <div class="logo-item"><span class="logo-main">WASHI</span><span class="logo-sub">GROUP</span></div>
+        <div class="logo-item"><span class="logo-main">WASHI ART</span><span class="logo-sub">STENCIL & VELVET</span></div>
+        <div class="logo-item"><span class="logo-main">WASHI BEE</span><span class="logo-sub">NATURAL PRODUCTS</span></div>
+        <div class="logo-item"><span class="logo-main">ALANOOD AL-NAIMI</span><span class="logo-sub">ART PORTFOLIO</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="accor-style-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-monogram">KS</div>
+        <h2 class="brand-name">KARIM SAAB</h2>
+        <span class="brand-tagline">عبد الكريم بن ابراهيم الصعب</span>
+      </div>
+
+      <h4 class="section-heading" data-ar="تابعنا | FOLLOW US" data-en="FOLLOW US">تابعنا | FOLLOW US</h4>
+      <div class="social-links-grid">
+        <a href="https://instagram.com/ALSAABB" target="_blank" class="social-item">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://youtube.com/@ALSAABB" target="_blank" class="social-item">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02l.01-6.54 5.75 3.27-5.76 3.27z"></path></svg>
+          <span>Youtube</span>
+        </a>
+        <a href="https://tiktok.com/@ALSAABB" target="_blank" class="social-item">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.74V16a6 6 0 1 1-6-6v2z"></path></svg>
+          <span>Tiktok</span>
+        </a>
+        <a href="https://x.com/ALSAABB" target="_blank" class="social-item">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+          <span>X (Twitter)</span>
+        </a>
+      </div>
+
+      <h4 class="section-heading mt-40" data-ar="مواقعنا واستثماراتنا | OTHER WEBSITES" data-en="OUR DIGITAL ECOSYSTEM">مواقعنا واستثماراتنا | OTHER WEBSITES</h4>
+      <div class="other-websites-links">
+        <a href="https://alsaab.co" target="_blank" class="web-link">ALSAAB.CO <span class="arrow">↗</span></a>
+        <a href="https://linktr.ee/ALSAABB" target="_blank" class="web-link">LINKTREE HUB <span class="arrow">↗</span></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div class="bottom-inner">
+        <span>© 2026 KARIM SAAB. All rights reserved</span>
+        <div class="legal-links">
+          <a href="#privacy" data-ar="الخصوصية" data-en="Privacy Policy">الخصوصية</a>
+          <a href="#terms" data-ar="الشروط" data-en="Legal Terms">الشروط</a>
+          <a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleLanguage() {
+      const html = document.documentElement;
+      const isArabic = html.getAttribute('dir') === 'rtl';
+      const newLang = isArabic ? 'en' : 'ar';
+      const newDir = isArabic ? 'ltr' : 'rtl';
+
+      html.setAttribute('dir', newDir);
+      html.setAttribute('lang', newLang);
+
+      document.getElementById('langToggleBtn').innerText = isArabic ? 'العربية' : 'English';
+
+      const translatableElements = document.querySelectorAll('[data-ar]');
+      translatableElements.forEach(el => {
+        const text = el.getAttribute(`data-${newLang}`);
+        if (text) {
+          el.textContent = text;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
