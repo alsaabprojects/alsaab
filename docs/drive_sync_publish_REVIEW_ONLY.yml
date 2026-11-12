@@ -1,0 +1,73 @@
+# REVIEW PROPOSAL ONLY — kept under docs/; NOT an active GitHub Actions workflow.
+# Move into .github/workflows/ ONLY after scripts, source segregation, and owner approval.
+name: AL SAAB GROUP — Google Drive content preview and Pull Request
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  review-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Fail closed unless approved group configuration exists
+        env:
+          GROUP_DRIVE_FOLDER_ID: ${{ secrets.ALSAAB_GROUP_DRIVE_FOLDER_ID }}
+          GDRIVE_SERVICE_ACCOUNT_KEY: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
+          GROUP_SPREADSHEET_ID: "13-ATRFfiKbEUYm7hvy_XJTSaq-fc1YWfJhkn3UIv5U8"
+        run: |
+          set -euo pipefail
+          test -n "$GROUP_DRIVE_FOLDER_ID"
+          test -n "$GDRIVE_SERVICE_ACCOUNT_KEY"
+          test -n "$GROUP_SPREADSHEET_ID"
+          test "$GROUP_DRIVE_FOLDER_ID" != "1id9geTmCXMpdlX4p2CSnCPBz4JDBCyWG" || { echo "::error::Legacy mixed-project Drive root prohibited"; exit 1; }
+          test -f scripts/sync_engine.py || { echo "::error::Group-specific sync engine has not been implemented"; exit 1; }
+      - name: Create dedicated review branch
+        run: |
+          set -euo pipefail
+          BRANCH="review/group-drive-sync-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
+          echo "REVIEW_BRANCH=$BRANCH" >> "$GITHUB_ENV"
+      - name: Install dependencies (after script security review)
+        run: python -m pip install --disable-pip-version-check google-api-python-client google-auth
+      - name: Generate review changes ONLY
+        env:
+          GROUP_DRIVE_FOLDER_ID: ${{ secrets.ALSAAB_GROUP_DRIVE_FOLDER_ID }}
+          GDRIVE_SERVICE_ACCOUNT_KEY: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
+          GROUP_SPREADSHEET_ID: "13-ATRFfiKbEUYm7hvy_XJTSaq-fc1YWfJhkn3UIv5U8"
+        run: |
+          python scripts/sync_engine.py --review-only
+      - name: Validate bilingual content (no deploy)
+        run: |
+          python scripts/validate_bilingual.py
+          git diff --check
+      - name: Commit only approved group content to review branch
+        id: changes
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- index.html housing.html hotels.html
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "content(group): review approved Drive changes"
+            git push origin "HEAD:$REVIEW_BRANCH"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Create PR for owner review; never merge automatically
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create --base main --head "$REVIEW_BRANCH" --title "AL SAAB GROUP — Drive sync content review" --body "Review all bilingual copy, logos, source rights, project separation and screenshots before merging. No automated deployment is authorised."
+
+# NOT ACTIVE: scripts/sync_engine.py doesn't exist yet, secrets and source folder unverified.
+# DO NOT enable schedule or direct git push origin main.
