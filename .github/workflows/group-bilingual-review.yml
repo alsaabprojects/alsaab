@@ -1,0 +1,19 @@
+name: Validate AL SAAB GROUP bilingual review (no deployment)
+on:
+  push:
+    branches:
+      - feature/group-bilingual-portal-review-20261112
+  pull_request:
+    branches:
+      - design/al-saab-projects-group-v1
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check bilingual page parity and safe asset paths
+        run: python3 scripts/validate_bilingual.py
+      - name: Check diff whitespace
+        run: git diff --check
