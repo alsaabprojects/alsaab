@@ -131,6 +131,9 @@ html[lang="en"] .card{direction:ltr}html[lang="en"] .card .hint:after{content:" 
   document.querySelectorAll("[data-ar][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+locale)});
   btn.textContent=locale==="ar"?"English":"العربية";
   document.title=locale==="ar"?"مجموعة مشاريع الصعب | AL SAAB PROJECTS GROUP":"AL SAAB PROJECTS GROUP | Housing & Hospitality";
+  document.querySelector('meta[name="description"]').content=locale==="ar"?"مجموعة مشاريع الصعب — مشاريع سكنية وفندقية وواجهة مؤسسية ثنائية اللغة.":"AL SAAB PROJECTS GROUP — an institutional gateway to residential development and hospitality projects.";
+  var profile=document.querySelector("a.card.profile");
+  if(profile)profile.href="https://alsaabb.github.io/KARIM-SAAB-WEB-LAB/dist/index.html#/"+locale+"/about";
   document.querySelectorAll('a[href$=".html"]').forEach(function(el){var base=el.getAttribute("href").split("?")[0];el.setAttribute("href",base+"?lang="+locale)});
  }
  btn.addEventListener("click",function(){apply(locale==="ar"?"en":"ar")});
